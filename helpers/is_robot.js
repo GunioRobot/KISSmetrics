@@ -1,6 +1,6 @@
 /**
  * Returns true if the passed in user-agent is a robot.
- * 
+ *
  * @return boolean  If the current user-agent is a robot
  * @ignore
  */

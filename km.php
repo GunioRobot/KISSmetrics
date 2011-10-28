@@ -302,7 +302,7 @@ class KM
         self::log_error("Failed to create socket ". self::$host . " : $errstr ($errno)\n");
         self::log_query($query);
       } else {
-        stream_set_blocking($fp,0); // If mode is 0, the given stream will be switched to non-blocking mode, and if 1, it will be switched to blocking mode. 
+        stream_set_blocking($fp,0); // If mode is 0, the given stream will be switched to non-blocking mode, and if 1, it will be switched to blocking mode.
         $out = $get;
         $out .= "Host:" . self::get_hostname() . "\r\n";
         $out .= "Connection: Close\r\n\r\n";

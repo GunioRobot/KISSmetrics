@@ -22,7 +22,7 @@ has 'use_cron' => ( isa => 'Bool', is => 'ro' );
 
 sub BUILD {
     my ($self, $params) = @_;
-    $self->_log_dir_writeable;      
+    $self->_log_dir_writeable;
 }
 
 sub identify {
@@ -54,10 +54,10 @@ sub set {
 sub send_logged_queries {
     my $self = shift;
     my $line;
-    
+
     return unless (-f $self->_log_name('query'));
     rename($self->_log_name('query'), $self->_log_name('send'));
-    
+
     my $log = $self->_log_name('send');
     eval {
         open(SEND, "<", $log) or die "Couldn't open log file $log: $!";
@@ -87,7 +87,7 @@ sub _reset {
 }
 
 sub _user_agent {
-    
+
 }
 
 sub _log_name {
@@ -130,7 +130,7 @@ sub _log {
     eval {
         open(FH, ">>", $log) or die "Couldn't open log file $log: $!";
         print FH "$msg\n";
-        close FH;        
+        close FH;
     };
     if ($@) {
         # the Ruby method ignores this.
@@ -153,9 +153,9 @@ sub _generate_query {
     }
     my $params = join '&', @query_params;
     $query = join '', (
-                            '/', 
+                            '/',
                             $type,
-                            '?', 
+                            '?',
                             $params,
                       );
     if ($self->use_cron) {
@@ -176,7 +176,7 @@ sub _send_query {
     my ($self, $line) = @_;
     my ($host, $port) = split ':', $self->host;
     my $uri  = "http://";
-    $uri .= join '', ($self->host, $line); 
+    $uri .= join '', ($self->host, $line);
     my $request = HTTP::Request->new('GET' => $uri);
     print "sending $uri\n";
     eval {
